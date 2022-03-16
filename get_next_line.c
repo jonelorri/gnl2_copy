@@ -72,13 +72,7 @@ char	*get_next_line(int fd)
 	while(ft_search_n(holder) == 0)
 	{
 		a = read(fd, buf, BUFFER_SIZE);
-		if ((int)a == -1)
-		{
-			liberar(&buf, &holder);
-			return (NULL);
-		}
-		buf[a] = 00;
-		if(a == 0)
+		if(a == 0 || (int)a == -1)
 		{
 			if(ft_strlen(holder) > 0)
 			{
