@@ -57,6 +57,21 @@ static char *update_holder(char **holder, char *buf, size_t a)
 	return(*holder);
 }
 
+char	*update_line(char **holder, char *buf)
+{
+	char *line;
+
+	if(ft_strlen(*holder) > 0)
+	{
+		line = (char *)malloc(sizeof(char) * ft_strlen(*holder) + 1);
+		ft_strlcpy(line, *holder, ft_strlen(*holder) + 1);
+		liberar(&buf, &*holder);
+		return(line);
+	}
+	liberar(&buf, &*holder);
+	return(NULL);
+}
+
 char	*get_next_line(int fd)
 {
 	char		*buf;
@@ -73,17 +88,7 @@ char	*get_next_line(int fd)
 	{
 		a = read(fd, buf, BUFFER_SIZE);
 		if(a == 0 || (int)a == -1)
-		{
-			if(ft_strlen(holder) > 0)
-			{
-				line = (char *)malloc(sizeof(char) * ft_strlen(holder) + 1);
-				ft_strlcpy(line, holder, ft_strlen(holder) + 1);
-				liberar(&buf, &holder);
-				return(line);
-			}
-			liberar(&buf, &holder);
-			return(NULL);
-		}
+			return(update_line(&holder, buf));
 		holder = update_holder(&holder, buf, a);
 		if(!holder)
 			return(NULL);
