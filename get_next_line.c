@@ -14,7 +14,7 @@ char	*ft_strtrim(const char *s1, char const *set);
 int	ft_search_n(const char *s1);
 char	*ft_strchr(const char *s, int c);
 
-void	liberar(char **buf, char **holder)
+void	ft_free(char **buf, char **holder)
 {
 	free(*buf);
 	free(*holder);
@@ -65,10 +65,10 @@ char	*update_line(char **holder, char *buf)
 	{
 		line = (char *)malloc(sizeof(char) * ft_strlen(*holder) + 1);
 		ft_strlcpy(line, *holder, ft_strlen(*holder) + 1);
-		liberar(&buf, &*holder);
+		ft_free(&buf, &*holder);
 		return(line);
 	}
-	liberar(&buf, &*holder);
+	ft_free(&buf, &*holder);
 	return(NULL);
 }
 
