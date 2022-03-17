@@ -22,7 +22,7 @@ int main()
 	int i;
 
 	i = 0;
-	fd = open("/Users/jelorria/cursus/gnl2/gnlTester/files/big_line_no_nl", O_RDONLY);
+	fd = open("/Users/jonelorriaga/programacion/42/gnl2_copy/gnlTester/files/big_line_no_nl", O_RDONLY);
 	while(i < 1)
 	{
 		result = get_next_line(fd);
